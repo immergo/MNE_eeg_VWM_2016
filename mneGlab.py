@@ -1,5 +1,7 @@
 import mne, csv
 
+montageFileDir = 'd:/home/mskorko/apps/Anaconda2/Lib/site-packages/mne/channels/data/montages/M1_Custom.txt'
+
 def correctFilter(behDataPath):
     """Input path and filename of extracted behavioral responses.  Returns boolean array
        to be used when dropping epochs."""
@@ -28,7 +30,7 @@ def rawPrep(rawObj):
 
     rawObj.rename_channels(mapping={'FP2': 'Fp2', 'As REF': 'AsREF', 'Af7': 'AF7'})
     rawObj.info['bads'] = ['AsREF']
-    montages = mne.channels.read_montage('d:\home\mskorko\apps\Anaconda2\Lib\site-packages\mne\channels\data\montages\M1_Custom.txt')
+    montages = mne.channels.read_montage(montageFileDir)
     rawObj.set_montage(montages)
     mne.io.set_eeg_reference(rawObj, ref_channels=None)
 
